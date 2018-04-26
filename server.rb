@@ -2,8 +2,10 @@ require "sinatra"
 require "sinatra/activerecord"
 
 #Dont forget to require your models
-# require_relative './models/administrator'
-# require_relative './models/cars'
+require_relative './models/post_tag'
+require_relative './models/post'
+require_relative './models/tag'
+require_relative './models/user'
 
 set :database, {adapter: 'postgresql', database: 'rumblr'}
 
