@@ -1,8 +1,8 @@
     <div class="container" role="main">
-
+    <% @blog.each do |blog|%>
       <div class="blog-header">
-        <h1 class="blog-title"><%= @blog.blog_name%></h1>
-        <p class="lead blog-description"><%= @blog.sub_name %></p>
+        <h1 class="blog-title"><%= blog.blog_name%></h1>
+        <p class="lead blog-description"><%= blog.sub_name %></p>
       </div>
 
       <div class="row">
@@ -41,11 +41,6 @@
             </ol>
             <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
           </div><!-- /.blog-post -->
-
-         
-
-          
-
           <nav>
             <ul class="pager">
               <li><a href="#">Previous</a></li>
@@ -58,10 +53,11 @@
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
-            <p><%= @blog.description %></p>
+            <p><%= blog.description %></p>
           </div>
         </div><!-- /.blog-sidebar -->
-
+  
+     <% end %>
       </div><!-- /.row -->
 
     </div><!-- /.container -->

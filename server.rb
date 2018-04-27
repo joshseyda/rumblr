@@ -71,6 +71,7 @@ post '/new' do
 end
 
 get '/edit_profile' do
+    @blog = Profile.where(user_id: session[:id])
     erb :edit_profile
 end
 
@@ -83,6 +84,7 @@ end
 get '/profile' do
     @user = User.find(session[:id]) 
     @blog = Profile.where(user_id: session[:id])
+    @post = Post.where(user_id: session[:id])
     erb :profile
 end
 
