@@ -1,0 +1,67 @@
+    <div class="container-fluid">
+      <div class="row">
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="/home">
+                  <span data-feather="home"></span>
+                  Home
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="/new">
+                  <span data-feather="file"></span>
+                  New Post<span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/edit_profile">
+                  <span data-feather="layers"></span>
+                  Edit Profile
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/profile">
+                  <span data-feather="users"></span>
+                  View Profile
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/delete">
+                  <span data-feather="file"></span>
+                  Delete Account
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <h1 class="h2">New Post</h1>
+            </div>
+          <div>
+          <form method="POST" action="/new">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault01">Name</label>
+      <input name="post_name" type="text" class="form-control" id="validationDefault01" placeholder="Post Name" required>
+    </div>
+    <div class="col-sm-12">
+      <label for="validationDefault02">Text Content</label>
+      <textarea name="post_text" class="form-control" rows="5" id="validationDefault02"></textarea>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault03">Tags</label>
+      <input name="tags" type="text" class="form-control" id="validationDefault03" placeholder="Tags" required>
+    </div>
+  </div>
+  <div class="col-s-12">
+    <button class="btn btn-primary" type="submit">Submit form</button>
+  </div>
+</form>
+          </div>
+        </main> 
+      </div>
+    </div>
