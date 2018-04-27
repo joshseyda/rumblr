@@ -6,6 +6,7 @@ require_relative './models/post_tag'
 require_relative './models/post'
 require_relative './models/tag'
 require_relative './models/user'
+require_relative './models/profile'
 
 set :database, {adapter: 'postgresql', database: 'rumblr'}
     enable :sessions
@@ -32,6 +33,7 @@ post '/sign_up' do
         @user = User.create(username: params[:username], email: params[:email], password_digest: params[:password_digest], birthday: params[:birthday])
         @user
         session[:id] = @user.id
+        Profile.create(blog_name: "", sub_name: "", description: "", user_id: session[:id])
         redirect '/home'
     end 
 end
@@ -72,21 +74,34 @@ get '/edit_profile' do
     erb :edit_profile
 end
 
-post '/edit_profile' do
+put '/edit_profile' do
+    @profile = Profile.find_by(user_id: session[:id])
+    @profile.update(blog_name: params[:blog_name], sub_name: params[:sub_name], description: params[:description], user_id: session[:id])
     redirect '/home'
 end
 
 get '/profile' do
+    @user = User.find(session[:id]) 
+    @blog = Profile.where(user_id: session[:id])
     erb :profile
 end
 
-get '/edit_post' do
+get '/edit_post/:id' do
+    @this_post = params[:id]
+    @this = Post.find(@this_post)
     erb :edit_post
 end
 
-post '/edit_post/:id' do
+put '/edit_post/:id' do
     @this_post = params[:id]
+    @this = Post.find(@this_post)
+    @this.update(title: params[:title], content: params[:content])
     redirect '/home'
+end
+
+delete '/user/post/:id' do
+    @this_post = params[:id]
+    @post = Post.find(@this_post)
 end
 
 post '/search' do
@@ -106,6 +121,20 @@ end
 get '/log_out' do
     session.clear
     redirect '/'
+end
+
+get '/delete' do
+    erb :delete
+end
+
+delete '/delete' do
+    @user = User.find(session[:id])
+    if params[:password] == @user.password_digest
+        User.destroy(session[:id])
+        redirect '/'
+    else
+        redirect '/'
+    end
 end
 
 private 

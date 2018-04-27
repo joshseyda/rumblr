@@ -39,19 +39,28 @@
 
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">Dashboard</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-              <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
-                <span data-feather="calendar"></span>
-                This week
-              </button>
+            <h1 class="h2">Edit your profile details</h1>
             </div>
-          </div>
-          </div> 
+          <form method="POST" action="/edit_profile">
+              <input type="hidden" name="_method" value="PUT">
+            <div class="form-row">
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Blog Name</label>
+                <input name="blog_name" type="text" class="form-control" id="validationDefault01" placeholder="Blog Name" value="<%= @blog.blog_name %>"required>
+              </div>
+              <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Header</label>
+                <input name="sub_name" type="text" class="form-control" id="validationDefault01" placeholder="Header" value="<%= @blog.sub_name %>"required>
+              </div>
+              <div class="col-sm-12">
+                <label for="validationDefault02">About</label>
+                <textarea name="description" class="form-control" rows="5" id="validationDefault02"><%= @blog.description %> </textarea>
+              </div>
+            </div>
+            <div class="col-s-12">
+              <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+          </form>
         </main> 
       </div>
     </div>
