@@ -1,5 +1,7 @@
 require "sinatra"
 require "sinatra/activerecord"
+require "carrierwave"
+require "carrierwave/orm/activerecord"
 
 #Dont forget to require your models
 require_relative './models/post_tag'
@@ -10,7 +12,10 @@ require_relative './models/profile'
 
 set :database, {adapter: 'postgresql', database: 'rumblr'}
     enable :sessions
-
+#Configure Carrierwave
+CarrierWave.configure do |config|
+    config.root = File.dirname(__FILE__) + "/public"
+  end
 
 #   First stage, pre-user signup and user log in
 get '/' do
@@ -84,7 +89,22 @@ end
 get '/profile' do
     @user = User.find(session[:id]) 
     @blog = Profile.where(user_id: session[:id])
-    @post = Post.where(user_id: session[:id])
+    @post = Post.where(user_id: session[:id]).limit(20)
+    # @limit = 20
+    erb :profile
+end
+
+get '/profile/next/20'do
+@user = User.find(session[:id]) 
+    @blog = Profile.where(user_id: session[:id])
+    @post = Post.where(user_id: session[:id]).limit(40).offset(20)
+    erb :profile
+end
+
+get '/profile/user/:id' do
+    @user = User.find(params[:id])
+    @blog = Profile.where(user_id: params[:id])
+    @post = Post.where(user_id: params[:id]).limit(20)
     erb :profile
 end
 

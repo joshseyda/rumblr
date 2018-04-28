@@ -5,6 +5,9 @@ class CreateProfile < ActiveRecord::Migration[5.2]
       t.string :sub_name
       t.string :description
       t.string :user_id
+      t.integer :tag_id
+            
+      t.timestamps 
     end
   end
 end
