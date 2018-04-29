@@ -6,3 +6,4 @@ gem "rake"
 gem "pg"
 gem "bcrypt"
 gem 'carrierwave'
+gem 'fog'

@@ -3,12 +3,14 @@ require "sinatra/activerecord"
 require "carrierwave"
 require "carrierwave/orm/activerecord"
 
-#Dont forget to require your models
-require_relative './models/post_tag'
+
+require_relative './models/user'
 require_relative './models/post'
 require_relative './models/tag'
-require_relative './models/user'
+require_relative './models/post_tag'
 require_relative './models/profile'
+require_relative './models/image'
+require_relative './models/images_uploader'
 
 set :database, {adapter: 'postgresql', database: 'rumblr'}
     enable :sessions
@@ -66,18 +68,35 @@ end
 
 # Stage 2, user account management
 get '/new' do
+    if user_exists?
     erb :new
+    else
+    redirect '/sign_up'
+    end
 end
 
 post '/new' do
     @user = User.find(session[:id])
-    Post.create(title: params[:post_name], content: params[:post_text], user_id: @user.id)
-    redirect '/home'
+    @post = Post.create(title: params[:post_name], content: params[:post_text], user_id: @user.id)
+    @post 
+    #Create new Image Model
+    # img = Image.new
+    #Save the data from the request
+    # img.file    = params[:file] #carrierwave will upload the file automatically
+    # img.caption = params[:post_name] #Or recieve it from params
+    # img.post_id = @post.id
+    # img.user_id = @user.id
+    # img.save!
+    redirect to('/home')
 end
 
 get '/edit_profile' do
+    if user_exists?
     @blog = Profile.where(user_id: session[:id])
     erb :edit_profile
+    else
+    redirect '/sign_up'
+    end
 end
 
 put '/edit_profile' do
@@ -87,18 +106,27 @@ put '/edit_profile' do
 end
 
 get '/profile' do
+    if user_exists?
     @user = User.find(session[:id]) 
     @blog = Profile.where(user_id: session[:id])
     @post = Post.where(user_id: session[:id]).limit(20)
+    # @image = Image.where(user_id: @user.id)
     # @limit = 20
     erb :profile
+    else
+    redirect '/sign_up'
+    end
 end
 
 get '/profile/next/20'do
-@user = User.find(session[:id]) 
+    if user_exists?
+    @user = User.find(session[:id]) 
     @blog = Profile.where(user_id: session[:id])
     @post = Post.where(user_id: session[:id]).limit(40).offset(20)
     erb :profile
+    else
+    redirect '/sign_up'
+    end
 end
 
 get '/profile/user/:id' do
@@ -109,15 +137,30 @@ get '/profile/user/:id' do
 end
 
 get '/edit_post/:id' do
+    if user_exists?
     @this_post = params[:id]
     @this = Post.find(@this_post)
     erb :edit_post
+    else
+    redirect '/sign_up'
+    end
 end
 
 put '/edit_post/:id' do
     @this_post = params[:id]
     @this = Post.find(@this_post)
     @this.update(title: params[:title], content: params[:content])
+    @tags = params[:tags].split(",")
+    @tags.each do |tag|
+        if Tag.exists?(name: tag)
+            @tag_id = tag.id
+            PostTag.create(post_id: @this_post, tag_id: @tag_id)
+        else
+            @tag = Tag.create(name: tag)
+            @tag_id = @tag.id
+            PostTag.create(post_id: @this_post, tag_id: @tag_id)
+        end
+    end
     redirect '/home'
 end
 
@@ -146,7 +189,11 @@ get '/log_out' do
 end
 
 get '/delete' do
+    if user_exists?
     erb :delete
+    else
+    redirect '/sign_up'
+    end
 end
 
 delete '/delete' do

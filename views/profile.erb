@@ -12,10 +12,17 @@
               <div class="blog-post">
               <% @post.each do |post| %>
                 <h2 class="blog-post-title"><%= post.title %></h2>
-                <%# <p class="blog-post-meta">January 1, 2014 by <a href="#">Mark</a></p> %>
-
+                <p class="blog-post-meta"> <%= post.updated_at %> <a href="/"><%= @user.username %></a></p>
                 <p> <%= post.content %></p>
-                <% end %>
+                <p class="blog-post-meta">
+                    Tags
+                    <% @post_tags = PostTag.where(post_id: post.id) %>
+                      <% @post_tags.each do |ptag| %>
+                      <% @tag = Tag.find(ptag.tag_id) %>
+                 <a href="/search/<%= @tag.id %>"><%= @tag.name %> </a>
+                      <% end %>
+                      </p>
+              <% end %>
           </div><!-- /.blog-post -->
           <nav>
             <ul class="pager">
