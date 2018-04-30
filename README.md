@@ -2,7 +2,7 @@
 ## Motivation
 ###### Crft.co is a hypothetical blogging platform and content management system created for my NYCDA WDF course. We were tasked with building out a simple CRUD application using ActiveRecord to manage a Postgres Database and Ruby with Sinatra on the backend. 
 ## Build Status
-###### Currently I have implemented a simple structure that is _mostly_ mobile responsive, but not entirely. The page supports tags and searching tags, however most work needs to be done to smooth out  some edgecases on tags(specifically returning the proper error page on failure). I would also like to include comments, private messaging, and a public forum/channel. I am working on integrating Bcrypt for secure authentication, and Carrierwave for accomodating image file upload.   
+###### Currently I have implemented a simple structure that is _mostly_ mobile responsive, but not entirely. The page supports tags and searching tags, however most work needs to be done to smooth out  some edgecases on tags(specifically returning the proper error page on failure). I would also like to include comments, private messaging, and a public forum/channel. I am working on integrating Bcrypt for secure authentication, WillPaginate to manage pagination, and Carrierwave for accomodating image file upload.   
 ## Code Style
 ###### There are some redundancies in the erb files that I would like to sand down, however I feel that much of the rendering is done dynamicaly, although I hope to make this process more lean and DRY. I did not write any JavaScript and kept my client side activity to a minimum. Moving forward I would like to change that. My main focus was on effective pathway control and database manipulation with Ruby, Sinatra, and ActiveRecord. 
 ## Technology Used

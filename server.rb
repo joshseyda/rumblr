@@ -134,7 +134,7 @@ get '/profile/next/20'do
     if user_exists?
     @user = User.find(session[:id]) 
     @blog = Profile.where(user_id: session[:id])
-    @post = Post.where(user_id: session[:id]).limit(40).offset(20)
+    @post = Post.where(user_id: session[:id]).limit(20).offset(20)
     erb :profile
     else
     redirect '/sign_up'
