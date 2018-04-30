@@ -44,9 +44,9 @@
           <div>
           <% posts = Post.where(user_id: @user.id)%>
           <% posts.each do |post| %>
-          <p><%= post.content %></p>
+          <h5><%= post.content %></h5>
           <p class="blog-post-meta"> <%= post.updated_at %></p>
-          <h4><a class="edit_post" href="/edit_post/<%= post.id %>">Edit This Post</a></h4>
+          <h6><a class="edit_post" href="/edit_post/<%= post.id %>">Edit This Post</a></h6>
           <% end %>
           </div> 
         </main> 
