@@ -4,7 +4,7 @@ require "carrierwave"
 require "carrierwave/orm/activerecord"
 
 
-
+dsfsfsdfsdfsdfsdfsdf
 require_relative './models/User'
 require_relative './models/Post'
 require_relative './models/Tag'
