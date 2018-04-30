@@ -237,13 +237,16 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt
+  bcrypt (~> 3.1.11)
   carrierwave
   fog
   pg
   rake
   sinatra
   sinatra-activerecord
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.16.1
