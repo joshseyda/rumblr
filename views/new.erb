@@ -42,12 +42,16 @@
             <h1 class="h2">New Post</h1>
             </div>
           <div>
-          <form method="POST" action="/new">
+          <form method="POST" action="/new" enctype="multipart/form-data">
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">Name</label>
       <input name="post_name" type="text" class="form-control" id="validationDefault01" placeholder="Post Name" required>
     </div>
+  <div class="form-group">
+    <label for="exampleFormControlFile1">Image File</label>
+    <input name="image" type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
     <div class="col-sm-12">
       <label for="validationDefault02">Text Content</label>
       <textarea name="post_text" class="form-control" rows="5" id="validationDefault02"></textarea>
@@ -58,7 +62,7 @@
     </div>
   </div>
   <div class="col-s-12">
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn" type="submit">Submit form</button>
   </div>
 </form>
           </div>

@@ -5,3 +5,5 @@ gem "sinatra-activerecord"
 gem "rake"
 gem "pg"
 gem "bcrypt"
+gem 'carrierwave'
+gem 'fog'

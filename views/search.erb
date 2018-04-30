@@ -1,0 +1,56 @@
+<% @tag_name = Tag.find(@this_tag_id) %>
+<div class="container" role="main">
+      <div class="blog-header">
+        <h1 class="blog-title"><%= @tag_name.name %></h1>
+        <p class="lead blog-description">Search Results</p>
+      </div>
+      <div class="row">
+        <div class="col-sm-8 blog-main">
+              <div class="blog-post">
+                <% @search_tag.each do |inst| %>
+                <% @post_inst = Post.find(inst.post_id) %>
+                <% @user = User.find(@post_inst.user_id) %>
+                <h2 class="blog-post-title"><%= @post_inst.title %></h2>
+                <p class="blog-post-meta"> <%= @post_inst.updated_at %> <a href="/"><%= @user.username %></a></p>
+                <p> <%= @post_inst.content %></p>
+                <p class="blog-post-meta">
+                    Tags
+                    <% @post_tags = PostTag.where(post_id: @post_inst.id) %>
+                      <% @post_tags.each do |ptag| %>
+                      <% @tag = Tag.find(ptag.tag_id) %>
+                 <a href="/search/<%= @tag.id %>"><%= @tag.name %> </a>
+                      <% end %>
+                      </p>
+              <% end %>
+          </div><!-- /.blog-post -->
+          <nav>
+            <ul class="pager">
+              <li><a href="/profile">Previous</a></li>
+              <li><a href="/profile/next20">Next</a></li>
+            </ul>
+          </nav>
+
+        </div><!-- /.blog-main -->
+  
+      </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <footer class="blog-footer">
+      <%# <p>Blog template built for <a href="http://getbootstrap.com">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
+      <p>
+        <a href="#">Back to top</a>
+      </p> %>
+    </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>
