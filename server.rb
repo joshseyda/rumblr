@@ -79,6 +79,18 @@ post '/new' do
     @user = User.find(session[:id])
     @post = Post.create(title: params[:post_name], content: params[:post_text], user_id: @user.id)
     @post 
+    @tags = params[:tags].split(",")
+    @tags.each do |tag|
+        if Tag.exists?(name: tag)
+            @tag = Tag.find_by(name: tag)
+            @tag_id = @tag.id
+            PostTag.create(post_id: @this_post, tag_id: @tag_id)
+        else
+            @tag = Tag.create(name: tag)
+            @tag_id = @tag.id
+            PostTag.create(post_id: @this_post, tag_id: @tag_id)
+        end
+    end
     #Create new Image Model
     # img = Image.new
     #Save the data from the request
@@ -153,7 +165,8 @@ put '/edit_post/:id' do
     @tags = params[:tags].split(",")
     @tags.each do |tag|
         if Tag.exists?(name: tag)
-            @tag_id = tag.id
+            @tag = Tag.find_by(name: tag)
+            @tag_id = @tag.id
             PostTag.create(post_id: @this_post, tag_id: @tag_id)
         else
             @tag = Tag.create(name: tag)
@@ -170,12 +183,25 @@ delete '/user/post/:id' do
 end
 
 post '/search' do
-    @this_tag = params[:tag]
-    redirect '/search'
+    if params[:search].numeric? 
+        redirect "/search/#{params[:search]}"
+    elsif Tag.exists?(name: params[:search])
+        @tag_id =  Tag.find_by(name: params[:search])
+        @the_tag_id = @tag_id.id
+        redirect "/search/#{@the_tag_id}"
+    else
+        redirect '/search/error'
+    end
 end
 
-get '/search' do
-    @this_tag = params[:tag]
+get '/search/error/:query' do
+    @tag = params[:query]
+    erb :error
+end
+
+get '/search/:tag' do
+    @this_tag_id = params[:tag]
+    @search_tag = PostTag.where(tag_id: @this_tag_id).to_a
     erb :search
 end
 
@@ -214,3 +240,9 @@ end
 def current_user
     User.find(session[:id])
 end
+
+class String
+    def numeric?
+      Float(self) != nil rescue false
+    end
+  end
