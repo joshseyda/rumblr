@@ -12,7 +12,8 @@ require_relative './models/profile'
 require_relative './models/image'
 require_relative './models/images_uploader'
 
-set :database, {adapter: 'postgresql', database: 'rumblr'}
+# set :database, {adapter: 'postgresql', database: 'rumblr'}
+
     enable :sessions
 #Configure Carrierwave
 CarrierWave.configure do |config|
