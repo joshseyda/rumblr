@@ -2,16 +2,16 @@ require "sinatra"
 require "sinatra/activerecord"
 require "carrierwave"
 require "carrierwave/orm/activerecord"
-# require "bcrypt"
 
 
-require_relative './models/user'
-require_relative './models/post'
-require_relative './models/tag'
-require_relative './models/post_tag'
-require_relative './models/profile'
-require_relative './models/image'
-require_relative './models/images_uploader'
+
+require_relative './models/User'
+require_relative './models/Post'
+require_relative './models/Tag'
+require_relative './models/Post_tag'
+require_relative './models/Profile'
+require_relative './models/Image'
+require_relative './models/Images_uploader'
 
 # set :database, {adapter: 'postgresql', database: 'rumblr'}
 ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://azjhksvzfpecqt:99c5b79ec091e32d3edc2bb18907bc4dc5a83a22eaa6c3a2442872c8d2d46895@ec2-107-21-103-146.compute-1.amazonaws.com:5432/d6365toin4rdj4')
