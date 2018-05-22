@@ -14,7 +14,6 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (9.0.0)
-    bcrypt (3.1.11)
     builder (3.2.3)
     carrierwave (1.2.2)
       activemodel (>= 4.0.0)
@@ -237,13 +236,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt
   carrierwave
   fog
   pg
   rake
   sinatra
   sinatra-activerecord
+
+RUBY VERSION
+   ruby 2.3.0p0
 
 BUNDLED WITH
    1.16.1

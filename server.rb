@@ -3,7 +3,6 @@ require "sinatra/activerecord"
 require "carrierwave"
 require "carrierwave/orm/activerecord"
 
-
 require_relative './models/user'
 require_relative './models/post'
 require_relative './models/tag'
@@ -12,7 +11,8 @@ require_relative './models/profile'
 require_relative './models/image'
 require_relative './models/images_uploader'
 
-set :database, {adapter: 'postgresql', database: 'rumblr'}
+# set :database, {adapter: 'postgresql', database: 'rumblr'}
+# ActiveRecord::Base.establish_connection(ENV['DATABASE_URL'] || 'postgres://azjhksvzfpecqt:99c5b79ec091e32d3edc2bb18907bc4dc5a83a22eaa6c3a2442872c8d2d46895@ec2-107-21-103-146.compute-1.amazonaws.com:5432/d6365toin4rdj4')
     enable :sessions
 #Configure Carrierwave
 CarrierWave.configure do |config|
