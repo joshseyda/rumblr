@@ -1,5 +1,4 @@
     <div class="container" role="main">
-    <% @blog%>
       <div class="blog-header">
         <h1 class="blog-title"><%= @blog.blog_name%></h1>
         <p class="lead blog-description"><%= @blog.sub_name %></p>
@@ -31,8 +30,7 @@
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
           <div class="sidebar-module sidebar-module-inset">
             <h4>About</h4>
-            <p><%= blog.description %></p>
-            <% end %>
+            <p><%= @blog.description %></p>
           </div>
         </div><!-- /.blog-sidebar -->
       </div><!-- /.row -->
