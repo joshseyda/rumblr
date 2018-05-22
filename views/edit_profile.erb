@@ -46,16 +46,16 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Blog Name</label>
-                <% @blog.each do |blog|%>
-                <input name="blog_name" type="text" class="form-control" id="validationDefault01" placeholder="Blog Name" value="<%= blog.blog_name %>"required>
+                <% @blog%>
+                <input name="blog_name" type="text" class="form-control" id="validationDefault01" placeholder="Blog Name" value="<%= @blog.blog_name %>"required>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Header</label>
-                <input name="sub_name" type="text" class="form-control" id="validationDefault01" placeholder="Header" value="<%= blog.sub_name %>"required>
+                <input name="sub_name" type="text" class="form-control" id="validationDefault01" placeholder="Header" value="<%= @blog.sub_name %>"required>
               </div>
               <div class="col-sm-12">
                 <label for="validationDefault02">About</label>
-                <textarea name="description" class="form-control" rows="5" id="validationDefault02"><%= blog.description %> </textarea>
+                <textarea name="description" class="form-control" rows="5" id="validationDefault02"><%= @blog.description %> </textarea>
               </div>
               <% end %>
             </div>
