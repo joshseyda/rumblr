@@ -1,3 +1,4 @@
+  
     <div class="container-fluid">
       <div class="row">
         <nav class="col-md-2 d-none d-md-block bg-light sidebar">
@@ -36,7 +37,6 @@
             </ul>
           </div>
         </nav>
-
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
           <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
             <h1 class="h2">Edit your profile details</h1>
@@ -46,15 +46,16 @@
             <div class="form-row">
               <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Blog Name</label>
-                <input name="blog_name" type="text" class="form-control" id="validationDefault01" placeholder="Blog Name" value="<%= @blog.blog_name %>"required>
+                  <% @blog.each do |blog| %>
+                <input name="blog_name" type="text" class="form-control" id="validationDefault01" placeholder="Blog Name" value="<%= blog.blog_name %>"required>
               </div>
               <div class="col-md-4 mb-3">
                 <label for="validationDefault01">Header</label>
-                <input name="sub_name" type="text" class="form-control" id="validationDefault01" placeholder="Header" value="<%= @blog.sub_name %>"required>
+                <input name="sub_name" type="text" class="form-control" id="validationDefault01" placeholder="Header" value="<%= blog.sub_name %>"required>
               </div>
               <div class="col-sm-12">
                 <label for="validationDefault02">About</label>
-                <textarea name="description" class="form-control" rows="5" id="validationDefault02"><%= @blog.description %> </textarea>
+                <textarea name="description" class="form-control" rows="5" id="validationDefault02"><%= blog.description %> </textarea>
               </div>
             </div>
             <div class="col-s-12">
@@ -64,3 +65,4 @@
         </main> 
       </div>
     </div>
+    <% end %>
