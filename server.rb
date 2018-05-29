@@ -226,6 +226,7 @@ delete '/delete' do
     @user = User.find(session[:id])
     if params[:password] == @user.password_digest
         User.destroy(session[:id])
+        session.clear
         redirect '/'
     else
         redirect '/'
