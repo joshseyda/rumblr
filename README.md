@@ -1,5 +1,6 @@
 # Crft.co
 ## [Visit The Page](https://crft-rumblr.herokuapp.com/)
+![screen_recording](http://recordit.co/3mTSobNorD)
 ## Motivation
 ###### Crft.co is a hypothetical blogging platform and content management system created for my NYCDA WDF course. We were tasked with building out a simple CRUD application using ActiveRecord to manage a Postgres Database and Ruby with Sinatra on the backend. 
 ## Build Status
